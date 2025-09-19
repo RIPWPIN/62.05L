@@ -1,93 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Banner Website</title>
+  <title>WELCOME</title>
   <style>
-    /* Reset some default spacing */
-    * {
-      box-sizing: border-box;
+    :root {
+      --brand:#fcb713;
+      --bg:#000;
+      --fg:#fff;
+    }
+    html, body {
+      height: 100%;
       margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f2f5;
-      color: #333;
-    }
-
-    /* Top banner styles */
-    header {
-      background-color: #4a90e2; /* Blue color */
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-      font-size: 2em;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: Arial, Helvetica, sans-serif;
       font-weight: bold;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-
-    /* Container for the buttons */
-    .button-banner-container {
+    .page {
+      min-height: 100%;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 24px;
+    }
+    header {
+      padding: 24px 20px 0;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      max-width: 1000px;
-      margin: 40px auto;
+      align-items: center;
+    }
+    header svg {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+    }
+    main {
+      display: grid;
+      place-items: center;
       padding: 0 20px;
-    }
-
-    /* Style for each button banner */
-    .button-banner {
-      background-color: #ffffff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      border-radius: 12px;
-      flex: 1 1 200px;
-      max-width: 220px;
-      padding: 30px 20px;
       text-align: center;
-      font-size: 1.25em;
-      font-weight: 600;
-      color: #4a90e2;
+    }
+    #welcome {
+      font-size: clamp(32px, 6vw, 72px);
+      font-weight: bold;
+      margin: 8px 0 16px;
+      transition: opacity 300ms ease;
+      text-transform: uppercase;
+    }
+    #subtitle {
+      font-size: clamp(32px, 6vw, 72px);
+      font-weight: bold;
+      margin: 0 0 calc(clamp(32px, 6vw, 72px) / 2);
+      text-transform: uppercase;
+    }
+    #subtitle span { display:block; }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      gap: 16px 24px;
+      padding: 8px 20px 32px;
+      max-width: 900px;
+      margin: 0 auto 40px;
+    }
+    .col { display: grid; gap: 12px; }
+    a.btn {
+      display: inline-block;
       text-decoration: none;
-      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
+      text-align: center;
+      padding: 16px 20px;
+      border-radius: 0;
+      background: var(--brand);
+      color: var(--fg);
+      font-weight: bold;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 6px 18px rgba(252,183,19,0.35);
+      transition: transform 120ms ease, filter 120ms ease, box-shadow 200ms ease;
+      text-transform: uppercase;
     }
-
-    .button-banner:hover,
-    .button-banner:focus {
-      background-color: #4a90e2;
-      color: white;
-      box-shadow: 0 6px 12px rgba(74, 144, 226, 0.6);
-      outline: none;
-    }
+    a.btn:hover { filter: brightness(0.95); box-shadow: 0 8px 22px rgba(252,183,19,0.45); }
+    a.btn:active { transform: translateY(1px); }
+    footer { height: 1px; }
+    @media (max-width: 640px) { .buttons { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
+  <div class="page">
+    <header>
+      <img src="logo.svg" alt="My Logo" style="max-width:300px;width:100%;height:auto" />
+    </header>
 
-  <!-- Top banner -->
-  <header>
-    Welcome to Our Website
-  </header>
+    <main>
+      <div id="welcome">WELCOME</div>
+      <div id="subtitle"><span>62.05L</span><span>VERTICAL TAMPER</span></div>
+      <section class="buttons">
+        <div class="col">
+          <a class="btn" href="#">FACTSHEET</a>
+          <a class="btn" href="#">INSTRUCTIONS</a>
+        </div>
+        <div class="col">
+          <a class="btn" href="#">तथ्यपत्र</a>
+          <a class="btn" href="#">निर्देश</a>
+        </div>
+      </section>
+    </main>
 
-  <!-- Button banners -->
-  <div class="button-banner-container">
-    <a href="https://www.example.com/page1" class="button-banner" target="_blank" rel="noopener noreferrer">
-      Go to Page 1
-    </a>
-    <a href="https://www.example.com/page2" class="button-banner" target="_blank" rel="noopener noreferrer">
-      Visit Page 2
-    </a>
-    <a href="https://www.example.com/page3" class="button-banner" target="_blank" rel="noopener noreferrer">
-      Explore Page 3
-    </a>
-    <a href="https://www.example.com/page4" class="button-banner" target="_blank" rel="noopener noreferrer">
-      Check Page 4
-    </a>
+    <footer></footer>
   </div>
 
+  <script>
+    const phrases = [
+      { text: "WELCOME", lang: "en" },
+      { text: "स्वागत है", lang: "hi" },
+      { text: "સ્વાગત છે", lang: "gu" },
+      { text: "स्वागत आहे", lang: "mr" },
+      { text: "স্বাগতম", lang: "bn" },
+      { text: "స్వాగతం", lang: "te" },
+    ];
+    const el = document.getElementById('welcome');
+    let idx = 0;
+    function updateWelcome(){
+      el.style.opacity = 0;
+      setTimeout(() => {
+        const phrase = phrases[idx];
+        el.textContent = phrase.text.toUpperCase();
+        el.setAttribute('lang', phrase.lang);
+        el.style.opacity = 1;
+        idx = (idx + 1) % phrases.length;
+      }, 250);
+    }
+    updateWelcome();
+    setInterval(updateWelcome, 3000);
+  </script>
 </body>
 </html>
