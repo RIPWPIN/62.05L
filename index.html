@@ -68,12 +68,12 @@
 
       <section class="buttons" aria-label="Primary actions">
         <div class="col" id="col-en" data-lang="en" aria-hidden="false">
-          <a class="btn" href="#" data-link-key="factsheet-en">FACTSHEET</a>
-          <a class="btn" href="#" data-link-key="instructions-en">INSTRUCTIONS</a>
+          <a class="btn" href="Product Leaflet 62.05L Vertical Tamper.pdf" target="_blank">FACTSHEET</a>
+          <a class="btn" href="instructions-en.pdf" target="_blank">INSTRUCTIONS</a>
         </div>
         <div class="col" id="col-hi" data-lang="hi" aria-hidden="true">
-          <a class="btn" href="#" data-link-key="factsheet-hi">तथ्यपत्र</a>
-          <a class="btn" href="#" data-link-key="instructions-hi">निर्देश</a>
+          <a class="btn" href="factsheet-hi.pdf" target="_blank">तथ्यपत्र</a>
+          <a class="btn" href="instructions-hi.pdf" target="_blank">निर्देश</a>
         </div>
       </section>
     </main>
@@ -126,17 +126,6 @@
     switchBtn.addEventListener('click', () => {
       const next = switchBtn.dataset.lang === 'en' ? 'hi' : 'en';
       setLang(next);
-    });
-
-    const LINKS = {
-      'factsheet-en': '#',
-      'instructions-en': '#',
-      'factsheet-hi': '#',
-      'instructions-hi': '#',
-    };
-    document.querySelectorAll('[data-link-key]').forEach(a => {
-      const key = a.getAttribute('data-link-key');
-      if (LINKS[key]) a.href = LINKS[key];
     });
   </script>
 </body>
