@@ -9,79 +9,39 @@
       --brand:#fcb713;
       --bg:#000;
       --fg:#fff;
+      --muted:#999;
+      --banner-size: clamp(32px, 6vw, 72px);
     }
-    html, body {
-      height: 100%;
-      margin: 0;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: bold;
-    }
-    .page {
-      min-height: 100%;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      gap: 24px;
-    }
-    header {
-      padding: 24px 20px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    header svg {
-      max-width: 300px;
-      width: 100%;
-      height: auto;
-    }
-    main {
-      display: grid;
-      place-items: center;
-      padding: 0 20px;
-      text-align: center;
-    }
-    #welcome {
-      font-size: clamp(32px, 6vw, 72px);
-      font-weight: bold;
-      margin: 8px 0 16px;
-      transition: opacity 300ms ease;
-      text-transform: uppercase;
-    }
-    #subtitle {
-      font-size: clamp(32px, 6vw, 72px);
-      font-weight: bold;
-      margin: 0 0 calc(clamp(32px, 6vw, 72px) / 2);
-      text-transform: uppercase;
-    }
-    #subtitle span { display:block; }
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(220px, 1fr));
-      gap: 16px 24px;
-      padding: 8px 20px 32px;
-      max-width: 900px;
-      margin: 0 auto 40px;
-    }
-    .col { display: grid; gap: 12px; }
-    a.btn {
-      display: inline-block;
-      text-decoration: none;
-      text-align: center;
-      padding: 16px 20px;
-      border-radius: 0;
-      background: var(--brand);
-      color: var(--fg);
-      font-weight: bold;
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: 0 6px 18px rgba(252,183,19,0.35);
-      transition: transform 120ms ease, filter 120ms ease, box-shadow 200ms ease;
-      text-transform: uppercase;
-    }
+    html, body { height: 100%; margin: 0; background: var(--bg); color: var(--fg); font-family: Arial, Helvetica, sans-serif; font-weight: bold; }
+    .page { min-height: 100%; display: grid; grid-template-rows: auto 1fr auto; gap: 24px; }
+    header { padding: 24px 20px 0; display: flex; justify-content: center; align-items: center; }
+    header img { max-width: 300px; width: 100%; height: auto; }
+
+    main { display: grid; place-items: center; padding: 0 20px; text-align: center; }
+
+    #welcome { font-size: var(--banner-size); line-height: 1.2; block-size: calc(var(--banner-size) * 1.2); margin: 8px 0 calc(var(--banner-size) * 0.22); transition: opacity 300ms ease; text-transform: uppercase; overflow: hidden; }
+    #subtitle { margin: 0 0 calc(var(--banner-size) * 0.5); text-transform: uppercase; }
+    #subtitle .main { font-size: var(--banner-size); line-height:1.2; font-family: Arial, Helvetica, sans-serif; font-weight:bold; }
+    #subtitle .narrow { font-size: calc(var(--banner-size) / 2); line-height:1.2; font-family:'Arial Narrow', Arial, sans-serif; font-weight:bold; }
+
+    .lang-switch { display:flex; align-items:center; gap:12px; margin-bottom: 16px; }
+    .lang-switch .label { width: 86px; text-align:center; font-size: 12px; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; }
+    .switch { position: relative; width: 84px; height: 36px; background:#111; border:1px solid #333; border-radius: 999px; display:flex; align-items:center; padding:4px; box-sizing:border-box; }
+    .switch .knob { position:absolute; top:4px; left:4px; width:28px; height:28px; background:var(--brand); border-radius:50%; transition: left 180ms ease; }
+    .switch .track { width:100%; display:flex; justify-content:space-between; font-size:12px; font-weight:bold; color:#bbb; padding:0 10px; user-select:none; }
+    .switch[data-lang="hi"] .knob { left: 52px; }
+    .switch .opt { opacity:0.65; }
+    .switch[data-lang="en"] .opt.en, .switch[data-lang="hi"] .opt.hi { opacity:1; color:#fff; }
+
+    .buttons { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 8px 20px 32px; margin: 0 auto 40px; }
+    .col { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+    .col[aria-hidden="true"] { display:none; }
+
+    a.btn { display:inline-block; text-decoration:none; text-align:center; padding:16px 20px; border-radius:0; background:var(--brand); color:var(--fg); border:1px solid rgba(255,255,255,0.12); box-shadow:0 6px 18px rgba(252,183,19,0.35); transition: transform 120ms ease, filter 120ms ease, box-shadow 200ms ease; text-transform: uppercase; min-width:180px; }
     a.btn:hover { filter: brightness(0.95); box-shadow: 0 8px 22px rgba(252,183,19,0.45); }
     a.btn:active { transform: translateY(1px); }
+
     footer { height: 1px; }
-    @media (max-width: 640px) { .buttons { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -92,15 +52,28 @@
 
     <main>
       <div id="welcome">WELCOME</div>
-      <div id="subtitle"><span>62.05L</span><span>VERTICAL TAMPER</span></div>
-      <section class="buttons">
-        <div class="col">
-          <a class="btn" href="#">FACTSHEET</a>
-          <a class="btn" href="#">INSTRUCTIONS</a>
+      <div id="subtitle">
+        <div class="main">62.05L</div>
+        <div class="narrow">VERTICAL TAMPER</div>
+      </div>
+
+      <div class="lang-switch" aria-label="Select language for buttons">
+        <span class="label">Language</span>
+        <button id="langSwitch" class="switch" type="button" role="switch" aria-checked="true" aria-label="Toggle language: EN / HI" data-lang="en">
+          <span class="knob" aria-hidden="true"></span>
+          <span class="track"><span class="opt en">EN</span><span class="opt hi">HI</span></span>
+        </button>
+        <span class="label">भाषा</span>
+      </div>
+
+      <section class="buttons" aria-label="Primary actions">
+        <div class="col" id="col-en" data-lang="en" aria-hidden="false">
+          <a class="btn" href="#" data-link-key="factsheet-en">FACTSHEET</a>
+          <a class="btn" href="#" data-link-key="instructions-en">INSTRUCTIONS</a>
         </div>
-        <div class="col">
-          <a class="btn" href="#">तथ्यपत्र</a>
-          <a class="btn" href="#">निर्देश</a>
+        <div class="col" id="col-hi" data-lang="hi" aria-hidden="true">
+          <a class="btn" href="#" data-link-key="factsheet-hi">तथ्यपत्र</a>
+          <a class="btn" href="#" data-link-key="instructions-hi">निर्देश</a>
         </div>
       </section>
     </main>
@@ -131,6 +104,40 @@
     }
     updateWelcome();
     setInterval(updateWelcome, 3000);
+
+    const switchBtn = document.getElementById('langSwitch');
+    const colEn = document.getElementById('col-en');
+    const colHi = document.getElementById('col-hi');
+
+    function setLang(lang){
+      switchBtn.dataset.lang = lang;
+      const isEn = lang === 'en';
+      switchBtn.setAttribute('aria-checked', String(isEn));
+      colEn.setAttribute('aria-hidden', String(!isEn));
+      colHi.setAttribute('aria-hidden', String(isEn));
+      try { localStorage.setItem('pref-lang', lang); } catch(e){}
+    }
+
+    try {
+      const saved = localStorage.getItem('pref-lang');
+      if (saved === 'hi' || saved === 'en') setLang(saved);
+    } catch(e){}
+
+    switchBtn.addEventListener('click', () => {
+      const next = switchBtn.dataset.lang === 'en' ? 'hi' : 'en';
+      setLang(next);
+    });
+
+    const LINKS = {
+      'factsheet-en': '#',
+      'instructions-en': '#',
+      'factsheet-hi': '#',
+      'instructions-hi': '#',
+    };
+    document.querySelectorAll('[data-link-key]').forEach(a => {
+      const key = a.getAttribute('data-link-key');
+      if (LINKS[key]) a.href = LINKS[key];
+    });
   </script>
 </body>
 </html>
