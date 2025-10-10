@@ -19,7 +19,18 @@
 
     main { display: grid; place-items: center; padding: 0 20px; text-align: center; }
 
-    #welcome { font-size: var(--banner-size); line-height: 1.2; height: calc(var(--banner-size) * 1.2); margin: 8px 0 calc(var(--banner-size) * 0.22); transition: opacity 300ms ease; text-transform: uppercase; overflow: hidden; }
+    /* FIX: Prevent clipping for Telugu and other scripts */
+    #welcome {
+      font-size: var(--banner-size);
+      line-height: 1.25;
+      min-height: calc(var(--banner-size) * 1.2);
+      height: auto;
+      margin: 8px 0 calc(var(--banner-size) * 0.22);
+      transition: opacity 300ms ease;
+      text-transform: uppercase;
+      overflow: visible;
+    }
+
     #subtitle { margin: 0 0 calc(var(--banner-size) * 0.5); text-transform: uppercase; }
     #subtitle .main { font-size: var(--banner-size); line-height:1.2; font-family: Arial, Helvetica, sans-serif; font-weight:bold; height: calc(var(--banner-size) * 1.2); }
     #subtitle .narrow { font-size: calc(var(--banner-size) / 2); line-height:1.2; font-family:'Arial Narrow', Arial, sans-serif; font-weight:bold; height: calc(var(--banner-size)); }
@@ -72,7 +83,7 @@
           <a class="btn" href="instructions-en.pdf" target="_blank">INSTRUCTIONS</a>
         </div>
         <div class="col" id="col-hi" data-lang="hi" aria-hidden="true">
-          <a class="btn" href="factsheet-hi.pdf" target="_blank">तथ्यपत्र</a>
+          <a class="btn" href="Product Leaflet 62.05L Vertical Tamper-hindi.pdf" target="_blank">तथ्यपत्र</a>
           <a class="btn" href="instructions-hi.pdf" target="_blank">निर्देश</a>
         </div>
       </section>
